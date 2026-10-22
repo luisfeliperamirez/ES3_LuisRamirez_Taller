@@ -1,0 +1,390 @@
+:root {
+    color-scheme: dark;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #050505;
+    color: #f4f4f4;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    --surface: #111;
+    --surface-raised: #191919;
+    --muted: #a1a1a1;
+    --accent: #c8a96b;
+    --line: #303030;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    background: #050505;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--accent);
+}
+
+.site-header,
+.page-content,
+.site-footer {
+    width: min(100% - 40px, 1040px);
+    margin-inline: auto;
+}
+
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 76px;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    font-size: 1.05rem;
+    font-weight: 750;
+    letter-spacing: -0.04em;
+}
+
+.brand span {
+    color: var(--accent);
+}
+
+.site-nav {
+    display: flex;
+    gap: 24px;
+    color: #c7c7c7;
+    font-size: 0.88rem;
+}
+
+.page-content {
+    min-height: 65vh;
+    margin-top: 28px;
+    padding: 30px 36px 38px;
+    background: var(--surface);
+}
+
+.site-footer {
+    padding: 20px 0 28px;
+    color: #777;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+.section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.section-heading h1,
+.detail-copy h1 {
+    margin: 0;
+    font-size: 1.35rem;
+    letter-spacing: -0.03em;
+}
+
+.eyebrow {
+    margin: 0 0 5px;
+    color: var(--accent);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.section-count {
+    padding-bottom: 3px;
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+.catalog-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.catalog-filters input,
+.catalog-filters select {
+    min-height: 42px;
+    border: 1px solid #363636;
+    border-radius: 4px;
+    background: #191919;
+    color: #f4f4f4;
+    font: inherit;
+}
+
+.catalog-filters input {
+    flex: 1;
+    min-width: 0;
+    padding: 0 13px;
+}
+
+.catalog-filters input::placeholder {
+    color: #858585;
+}
+
+.catalog-filters select {
+    padding: 0 32px 0 12px;
+}
+
+.catalog-filters button {
+    min-height: 42px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 4px;
+    background: var(--accent);
+    color: #17130c;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.catalog-filters button:hover {
+    background: #ddc48f;
+}
+
+.catalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 26px 16px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--line);
+}
+
+.album-card {
+    min-width: 0;
+}
+
+.album-artwork {
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 1;
+    border-radius: 3px;
+    background: var(--surface-raised);
+}
+
+.album-artwork img,
+.detail-artwork {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.album-artwork img {
+    transition: transform 220ms ease;
+}
+
+.album-artwork:hover img {
+    transform: scale(1.04);
+}
+
+.artwork-placeholder {
+    display: grid;
+    place-items: center;
+    color: #65605a;
+    font-size: 4rem;
+}
+
+.album-title {
+    overflow: hidden;
+    margin: 11px 0 5px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.album-meta {
+    margin: 0 0 11px;
+    color: #ddd;
+    font-size: 0.82rem;
+}
+
+.album-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 0.72rem;
+}
+
+.availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #b9d5b2;
+}
+
+.availability::before {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #80bd72;
+    content: "";
+}
+
+.availability.unavailable {
+    color: #d7a6a0;
+}
+
+.availability.unavailable::before {
+    background: #bf7067;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    padding: 24px 0;
+    color: var(--muted);
+}
+
+.album-detail {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 28px;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.detail-layout {
+    display: grid;
+    grid-template-columns: minmax(220px, 340px) minmax(0, 1fr);
+    gap: 36px;
+    align-items: start;
+}
+
+.detail-artwork {
+    aspect-ratio: 1;
+    border-radius: 3px;
+    background: var(--surface-raised);
+}
+
+.detail-copy h1 {
+    margin-bottom: 14px;
+}
+
+.detail-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 12px;
+    font-size: 0.92rem;
+}
+
+.release-date {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.83rem;
+}
+
+.album-description {
+    margin: 20px 0 28px;
+    color: #c4c4c4;
+    line-height: 1.7;
+    white-space: pre-line;
+}
+
+.tracklist-heading {
+    margin: 0 0 10px;
+    font-size: 1rem;
+}
+
+.tracklist {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+    color: #e3e3e3;
+    list-style: none;
+}
+
+.tracklist li {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.86rem;
+}
+
+.tracklist li span:last-child {
+    flex: 0 0 auto;
+    color: var(--muted);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+}
+
+@media (max-width: 640px) {
+    .site-header,
+    .page-content,
+    .site-footer {
+        width: min(100% - 24px, 1040px);
+    }
+
+    .site-header {
+        min-height: 66px;
+    }
+
+    .site-nav {
+        gap: 14px;
+        font-size: 0.8rem;
+    }
+
+    .page-content {
+        margin-top: 14px;
+        padding: 24px 18px 28px;
+    }
+
+    .catalogo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px 12px;
+    }
+
+    .catalog-filters {
+        flex-wrap: wrap;
+    }
+
+    .catalog-filters input {
+        flex-basis: 100%;
+    }
+
+    .catalog-filters select {
+        flex: 1;
+    }
+
+    .detail-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .detail-artwork {
+        width: min(100%, 360px);
+    }
+}

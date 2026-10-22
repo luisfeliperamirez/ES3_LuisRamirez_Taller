@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<section class="catalog-section">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">Colección</p>
+            <h1>Álbumes</h1>
+        </div>
+        <span class="section-count">{{ albumes|length }} discos</span>
+    </div>
+
+    <form class="catalog-filters" method="get">
+        <label class="visually-hidden" for="album-search">Buscar álbum</label>
+        <input id="album-search" type="text" name="q" value="{{ request.GET.q }}" placeholder="Buscar por álbum...">
+
+        <label class="visually-hidden" for="availability">Disponibilidad</label>
+        <select id="availability" name="disponible">
+            <option value="1" {% if request.GET.disponible == '1' or not request.GET.disponible %}selected{% endif %}>En stock</option>
+            <option value="0" {% if request.GET.disponible == '0' %}selected{% endif %}>Agotados</option>
+        </select>
+
+        <button type="submit">Filtrar</button>
+    </form>
+
+    <div class="catalogo-grid">
+        {% for album in albumes %}
+            <article class="album-card">
+                <a class="album-artwork" href="{% url 'detalle_album' album.id %}" aria-label="Ver {{ album.titulo }}">
+                    {% if album.portada %}
+                        <img src="{{ album.portada.url }}" alt="Portada de {{ album.titulo }}">
+                    {% else %}
+                        <span class="artwork-placeholder" aria-hidden="true">♫</span>
+                    {% endif %}
+                </a>
+
+                <h2 class="album-title">
+                    <a href="{% url 'detalle_album' album.id %}">{{ album.titulo }}</a>
+                </h2>
+                <p class="album-meta">${{ album.precio }} CLP</p>
+                <div class="album-footer">
+                    <span class="track-count">{{ album.canciones.count }} canciones</span>
+                    <span class="availability {% if not album.disponible %}unavailable{% endif %}">
+                        {% if album.disponible %}En stock{% else %}Agotado{% endif %}
+                    </span>
+                </div>
+            </article>
+        {% empty %}
+            <p class="empty-state">No se encontraron vinilos que coincidan con la búsqueda.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

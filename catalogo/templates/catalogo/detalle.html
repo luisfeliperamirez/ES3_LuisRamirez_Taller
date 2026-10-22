@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<article class="album-detail">
+    <a class="back-link" href="{% url 'inicio' %}">&larr; Volver al catálogo</a>
+    <div class="detail-layout">
+        {% if album.portada %}
+            <img class="detail-artwork" src="{{ album.portada.url }}" alt="Portada de {{ album.titulo }}">
+        {% else %}
+            <div class="detail-artwork artwork-placeholder" aria-hidden="true">♫</div>
+        {% endif %}
+
+        <div class="detail-copy">
+            <p class="eyebrow">Álbum</p>
+            <h1>{{ album.titulo }}</h1>
+
+            {% if album.disponible %}
+                <p class="detail-status"><span class="availability">En stock</span> · ${{ album.precio }} CLP</p>
+            {% else %}
+                <p class="detail-status"><span class="availability unavailable">Agotado</span></p>
+            {% endif %}
+
+            <p class="release-date">Lanzamiento: {{ album.fecha_lanzamiento }}</p>
+            <p class="album-description">{{ album.descripcion }}</p>
+
+            <h2 class="tracklist-heading">Lista de canciones</h2>
+            <ol class="tracklist">
+                {% for cancion in album.canciones.all %}
+                    <li><span>{{ cancion.titulo }}</span><span>{{ cancion.duracion_segundos }} seg</span></li>
+                {% empty %}
+                    <li>Este álbum no tiene canciones registradas aún.</li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</article>
+{% endblock %}

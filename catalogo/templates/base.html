@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Tienda de Vinilos - Mili{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="{% url 'inicio' %}">Vinilos de Mili</a>
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a href="{% url 'inicio' %}">Catálogo</a>
+            <a href="/admin/" target="_blank" rel="noopener noreferrer">Panel Admin</a>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        {% block contenido %}
+        <!-- Aquí se carga el contenido de inicio.html o detalle.html -->
+        {% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Tienda de Vinilos de Mili · Proyecto Taller Django</p>
+    </footer>
+</body>
+</html>
